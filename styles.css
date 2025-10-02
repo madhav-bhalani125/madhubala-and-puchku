@@ -1,0 +1,278 @@
+/* General Reset */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  background: #ffecec; /* Default background, will be overridden by JS */
+  overflow: hidden;
+  font-family: "Oswald", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+#title {
+  font-family: "Playwrite IN Guides", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Title Screen */
+#title-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  text-align: center;
+  background: #ffe4cc; /* Light orange background */
+}
+
+#title-screen h1 {
+  font-size: 3.5rem;
+  color: #ff8c42; /* Orange color */
+  font-family: "Delius Handrawn", cursive;
+  margin-bottom: 20px;
+}
+
+#title-screen p {
+  font-size: 1.2rem;
+  color: #d2691e; /* Darker orange for better readability */
+  margin-bottom: 30px;
+  font-family: "Delius Unicase", sans-serif;
+}
+
+#title-screen button {
+  --glow-color: rgb(255, 200, 150);
+  --glow-spread-color: rgba(255, 200, 150, 0.3);
+  --enhanced-glow-color: rgb(255, 220, 180);
+  --btn-color: rgb(255, 240, 220);
+  border: 0.25em solid var(--glow-color);
+  padding: 1em 3em;
+  color: rgb(204, 85, 0);
+  font-size: 15px;
+  font-weight: bold;
+  font-family: "Delius Unicase", sans-serif;
+  background-color: var(--btn-color);
+  border-radius: 1em;
+  outline: none;
+  box-shadow: 0 0 1em 0.25em var(--glow-color),
+    0 0 4em 1em var(--glow-spread-color),
+    inset 0 0 0.75em 0.25em var(--glow-color);
+  text-shadow: 0 0 0.5em var(--glow-color);
+  position: relative;
+  transition: all 0.3s;
+}
+
+#title-screen button::after {
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  top: 120%;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--glow-spread-color);
+  filter: blur(2em);
+  opacity: 0.7;
+  transform: perspective(1.5em) rotateX(35deg) scale(1, 0.6);
+}
+
+#title-screen button:hover {
+  --glow-color: rgb(255, 140, 66);
+  --glow-spread-color: rgba(255, 140, 66, 0.8);
+  --btn-color: rgb(204, 85, 0);
+  color: white;
+  background-color: var(--btn-color);
+  box-shadow: 0 0 1em 0.25em var(--glow-color),
+    0 0 4em 2em var(--glow-spread-color),
+    inset 0 0 0.75em 0.25em var(--glow-color);
+}
+
+#title-screen button:active {
+  box-shadow: 0 0 0.6em 0.25em var(--glow-color),
+    0 0 2.5em 2em var(--glow-spread-color),
+    inset 0 0 0.5em 0.25em var(--glow-color);
+}
+/* Scene Container */
+#scene {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  /* Removed background to allow body background image to show through */
+  display: none;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 10%; /* Added padding to avoid edge collisions */
+}
+
+/* Characters */
+#hello-kitty,
+#cinnamoroll {
+  position: relative;
+  width: 15%; /* Scaled relative to screen size */
+  text-align: center;
+}
+
+/* Adjust images within characters */
+#hello-kitty img {
+  width: 70%;
+  height: auto;
+}
+
+#cinnamoroll img {
+  width: 95%;
+  margin-top: 100px;
+  height: auto;
+}
+
+/* Speech Bubbles */
+.speech-bubble {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  padding: 10px 15px;
+  border-radius: 15px;
+  max-width: 200px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  display: none;
+  font-size: 14px;
+  color: #333;
+  text-align: center;
+}
+
+/* Specific Styles for Hello Kitty */
+#kitty-speech {
+  background-color: #ffdde5;
+  font-family: "Indie Flower", cursive;
+  color: #ff4980;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  font-size: larger;
+}
+
+#hello-kitty {
+  top: -25%;
+  left: -44%;
+}
+
+#cinnamoroll {
+  left: 23%;
+  top: -25%;
+}
+
+/* Specific Styles for Cinnamoroll */
+#cinnamoroll-speech {
+  background-color: #d5f7ff;
+  font-family: "Indie Flower", cursive;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #4f92ff;
+  bottom: 80%;
+  font-size: larger;
+}
+
+/* Navigation Buttons */
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  width: 100%;
+  bottom: 3%; /* Ensure the buttons are visible near the bottom */
+  padding: 0 10%; /* Padding to avoid being at screen edges */
+  z-index: 100; /* Ensure buttons are above other elements */
+}
+
+/* Center the middle button when prev/next are hidden */
+.nav-buttons.center-only {
+  left: -15%;
+  justify-content: center;
+}
+
+.nav-buttons button {
+  background: #ff7b00;
+  font-family: "Delius Unicase", sans-serif;
+  padding: 0.6em 1.3em;
+  font-weight: 900;
+  font-size: 18px;
+  border: 3px solid black;
+  border-radius: 0.4em;
+  box-shadow: 0.1em 0.1em;
+  cursor: pointer;
+  white-space: nowrap; /* Prevent text wrapping */
+  flex-shrink: 0; /* Prevent buttons from shrinking */
+}
+
+.nav-buttons button:hover {
+  transform: translate(-0.05em, -0.05em);
+  box-shadow: 0.15em 0.15em;
+}
+
+.nav-buttons button:active {
+  transform: translate(0.05em, 0.05em);
+  box-shadow: 0.05em 0.05em;
+}
+
+/* Fix for overlapping elements */
+#next-btn,
+#prev-btn {
+  position: relative;
+}
+
+#next-btn {
+  left: -50%;
+}
+
+/* Polaroid Slider */
+#polaroid-slider {
+  position: absolute;
+  top: 20%;
+  left: 18%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* Add spacing between Polaroids */
+  margin-top: 20px;
+}
+
+#polaroid-slider.visible {
+  opacity: 1; /* Fully opaque for the fade-in effect */
+}
+
+/* Polaroid Styles */
+.polaroid {
+  width: 220px; /* Increased width */
+  height: 300px; /* Increased height */
+  background: white;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+  overflow: hidden; /* Crop overflowing parts of the image */
+  display: none; /* Initially hidden for sequential display */
+}
+
+.polaroid img {
+  width: 100%; /* Fill the container width */
+  height: 80%; /* Fill the container height */
+  object-fit: cover; /* Crop images to fit without distortion */
+  border-radius: 8px;
+}
+
+.floating-text {
+  animation: float 5s ease-in-out forwards;
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(100px, -100px); /* Adjust as needed */
+  }
+}
